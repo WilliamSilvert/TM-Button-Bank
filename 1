@@ -1,0 +1,27 @@
+// Sample JSON data
+const jsonData = [
+  { id: 1, label: "Button 1" },
+  { id: 2, label: "Button 2" },
+  { id: 3, label: "Button 3" }
+];
+
+// Function to create draggable buttons from JSON data
+function createDraggableButtons(data) {
+  const container = document.getElementById("buttonContainer");
+
+  data.forEach(item => {
+    const button = document.createElement("button");
+    button.textContent = item.label;
+    button.draggable = true;
+
+    // Event listeners for drag and drop
+    button.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("text/plain", JSON.stringify(item));
+    });
+
+    container.appendChild(button);
+  });
+}
+
+// Call the function with the JSON data
+createDraggableButtons(jsonData);
